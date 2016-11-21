@@ -85,13 +85,22 @@
                         <releaseProfiles>release</releaseProfiles>
                         <remoteTagging>true</remoteTagging>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
-                        <!-- turn off the site deploy. There's a maven bug that makes it break -->
-                        <goals>deploy</goals>
                         <pushChanges>true</pushChanges>
                         <localCheckout>true</localCheckout>
-                        <pomFileName>shell.remote/pom.xml</pomFileName>
+                        <tagNameFormat>@{project.groupId}-@{project.artifactId}-@{project.version}</tagNameFormat>
                     </configuration>
-                </plugin>
+                    <executions>
+                      <execution>
+                        <id>default</id>
+                        <goals>
+                          <goal>perform</goal>
+                        </goals>
+                        <configuration>
+                          <pomFileName>shell.remote/pom.xml</pomFileName>
+                        </configuration>
+                      </execution>
+                    </executions>
+                    </plugin>
         </plugins>
       </pluginManagement>
       <plugins>
