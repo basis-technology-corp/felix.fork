@@ -67,8 +67,50 @@
 		</dependency>		
 	</dependencies>
 	<build>
+                <pluginManagement>
+                  <plugins>
+                    <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                    <configuration>
+                        <useReleaseProfile>true</useReleaseProfile>
+                        <releaseProfiles>release</releaseProfiles>
+                        <remoteTagging>true</remoteTagging>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <pushChanges>true</pushChanges>
+                        <localCheckout>true</localCheckout>
+                        <tagNameFormat>@{project.groupId}-@{project.artifactId}-@{project.version}</tagNameFormat>
+                    </configuration>
+                    <executions>
+                      <execution>
+                        <id>default</id>
+                        <goals>
+                          <goal>perform</goal>
+                        </goals>
+                        <configuration>
+                          <pomFileName>httplite/complete/pom.xml</pomFileName>
+                        </configuration>
+                      </execution>
+                    </executions>
+                    </plugin>
+                  </plugins>
+ 
+                </pluginManagement>
 		<plugins>
-			<plugin>
+                  <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${nexus-staging-plugin-version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                      <serverId>ossrh-releases</serverId>
+                      <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                      <stagingProfileId>af82fa330d4f7</stagingProfileId>
+                      <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                    </configuration>
+                  </plugin>
+		  <plugin>
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>animal-sniffer-maven-plugin</artifactId>
 		        <version>1.7</version>
