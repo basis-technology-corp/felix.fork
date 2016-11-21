@@ -122,7 +122,7 @@
                           <goal>perform</goal>
                         </goals>
                         <configuration>
-                          <pomFileName>shell.remote/pom.xml</pomFileName>
+                          <pomFileName>httplite/core/pom.xml</pomFileName>
                         </configuration>
                       </execution>
                     </executions>
