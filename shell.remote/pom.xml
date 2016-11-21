@@ -30,8 +30,20 @@
         Provide remote access to Felix Shell or Gogo.
     </description>
     <version>1.2.0-SNAPSHOT</version>
+    <groupId>com.basistech</groupId>
     <artifactId>org.apache.felix.shell.remote</artifactId>
-    <dependencies>
+    <properties>
+      <nexus-staging-plugin-version>1.6.6</nexus-staging-plugin-version>
+      <apache.group.id>org.apache.felix</apache.group.id>
+        <maven-release-plugin.version>2.5.1</maven-release-plugin.version>
+    </properties>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+   <dependencies>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
@@ -43,18 +55,50 @@
             <version>4.0.0</version>
         </dependency>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${apache.group.id}</groupId>
             <artifactId>org.apache.felix.shell</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${apache.group.id}</groupId>
             <artifactId>org.apache.felix.gogo.runtime</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
     <build>
+      <pluginManagement>
         <plugins>
+          <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                    <configuration>
+                        <useReleaseProfile>true</useReleaseProfile>
+                        <releaseProfiles>release</releaseProfiles>
+                        <remoteTagging>true</remoteTagging>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <!-- turn off the site deploy. There's a maven bug that makes it break -->
+                        <goals>deploy</goals>
+                        <pushChanges>true</pushChanges>
+                        <localCheckout>true</localCheckout>
+                        <pomFileName>shell.remote/pom.xml</pomFileName>
+                    </configuration>
+                </plugin>
+        </plugins>
+      </pluginManagement>
+      <plugins>
+        <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-plugin-version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh-releases</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <stagingProfileId>af82fa330d4f7</stagingProfileId>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -62,7 +106,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+                        <Bundle-SymbolicName>${project.groupId}-${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Category>console</Bundle-Category>
                         <Bundle-Activator>
                             org.apache.felix.shell.remote.Activator
