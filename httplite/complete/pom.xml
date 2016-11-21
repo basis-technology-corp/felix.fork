@@ -27,7 +27,7 @@
 	<packaging>bundle</packaging>
 	<name>Apache Felix Lightweight HTTP Service Complete</name>
 	<description>A minimal HTTP Service implementation, complete bundle.</description>
-	<version>0.1.6</version>
+	<version>0.1.7-SNAPSHOT</version>
         <groupId>com.basistech</groupId>
 	<artifactId>org.apache.felix.httplite.complete</artifactId>
 
@@ -41,7 +41,7 @@
       <url>https://github.com/basis-technology-corp/felix.fork</url>
         <connection>scm:git:git@github.com:basis-technology-corp/felix.fork.git</connection>
         <developerConnection>scm:git:git@github.com:basis-technology-corp/felix.fork.git</developerConnection>
-        <tag>com.basistech-org.apache.felix.httplite.complete-0.1.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
 	<dependencies>		
