@@ -46,7 +46,7 @@
 
 	<dependencies>		
 		<dependency>
-			<groupId>org.apache.felix</groupId>
+			<groupId>com.basistech</groupId>
 			<artifactId>org.apache.felix.httplite.core</artifactId>
 			<version>0.1.6</version>
 		</dependency>
