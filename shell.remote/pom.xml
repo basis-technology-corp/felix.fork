@@ -37,6 +37,14 @@
       <apache.group.id>org.apache.felix</apache.group.id>
         <maven-release-plugin.version>2.5.1</maven-release-plugin.version>
     </properties>
+    <scm>
+      <url>https://github.com/basis-technology-corp/felix.fork</url>
+        <connection>scm:git:git@github.com:basis-technology-corp/felix.fork.git</connection>
+        <developerConnection>scm:git:git@github.com:basis-technology-corp/felix.fork.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
