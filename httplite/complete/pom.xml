@@ -48,7 +48,7 @@
 		<dependency>
 			<groupId>com.basistech</groupId>
 			<artifactId>org.apache.felix.httplite.core</artifactId>
-			<version>0.1.7-SNAPSHOT</version>
+			<version>0.1.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>
